@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ذكرى 6 شهور المميزة ❤️</title>
+    <!-- خطوط عربية فاخرة -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,400&family=Cairo:wght@300;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #050507;
+            --card-bg: rgba(18, 18, 24, 0.85);
+            --primary-red: #ff1a3c;
+            --accent-glow: #e60026;
+            --text-light: #f0f0f5;
+            --gold-accent: #ffd700;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* خلفية التفاعلات النجمية والجزيئات */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* --- 1. شاشة الدخول والباسورد --- */
+        #login-screen {
+            position: relative;
+            z-index: 10;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 26, 60, 0.3);
+            padding: 45px 35px;
+            border-radius: 28px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 26, 60, 0.15);
+            animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* أيقونة القفل الفاخرة بديل القلوب التقليدية */
+        .lock-badge {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: radial-gradient(circle, rgba(255,26,60,0.2) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 26, 60, 0.4);
+            box-shadow: 0 0 20px rgba(255, 26, 60, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .lock-badge svg {
+            width: 38px;
+            height: 38px;
+            fill: var(--primary-red);
+        }
+
+        #login-screen h2 {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        #login-screen p {
+            font-size: 14px;
+            color: #8a8a9e;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1.5px solid rgba(255, 26, 60, 0.3);
+            color: #fff;
+            border-radius: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-red);
+            box-shadow: 0 0 18px rgba(255, 26, 60, 0.4);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 17px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-red), #99001a);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 26, 60, 0.4);
+        }
+
+        .error-msg {
+            color: #ff4d6d;
+            font-size: 13px;
+            margin-top: 12px;
+            display: none;
+        }
+
+        /* --- 2. محتوى الموقع الرئيسي --- */
+        #main-app {
+            display: none;
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 680px;
+            padding: 40px 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* هيدر التاج الاحترافي */
+        .header-badge {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .crown-icon {
+            font-size: 40px;
+            color: var(--gold-accent);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            display: block;
+            margin-bottom: 5px;
+            animation: crownGlow 2s infinite alternate;
+        }
+
+        .header-badge h1 {
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            background: linear-gradient(180deg, #ffffff 0%, #a0a0b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-badge h1 span {
+            background: linear-gradient(135deg, #ff4d6d, #ff1a3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-date {
+            font-size: 15px;
+            color: var(--primary-red);
+            font-weight: 600;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        <!-- العداد الحي بالثواني -->
+        .live-counter-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 26, 60, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .live-counter-card h3 {
+            text-align: center;
+            font-size: 16px;
+            color: #b0b0c2;
+            margin-bottom: 20px;
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .timer-box {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 26, 60, 0.15);
+            border-radius: 14px;
+            padding: 12px 5px;
+        }
+
+        .timer-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-red);
+            display: block;
+        }
+
+        .timer-label {
+            font-size: 12px;
+            color: #7a7a8c;
+            margin-top: 2px;
+        }
+
+        /* رسالة الحب الفاخرة */
+        .message-box {
+            background: var(--card-bg);
+            border-right: 4px solid var(--primary-red);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .message-box p {
+            font-family: 'Amiri', serif;
+            font-size: 20px;
+            line-height: 2.1;
+            color: #e2e2ec;
+            text-align: justify;
+            text-align-last: center;
+        }
+
+        /* شريط الذكريات (Timeline) */
+        .timeline-section {
+            margin-bottom: 35px;
+        }
+
+        .timeline-title {
+            text-align: center;
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-right: 30px;
+            margin-bottom: 20px;
+            border-right: 2px solid rgba(255, 26, 60, 0.3);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -7px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-red);
+        }
+
+        .timeline-card {
+            background: rgba(15, 15, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px;
+            border-radius: 14px;
+        }
+
+        .timeline-card h4 {
+            color: var(--primary-red);
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .timeline-card p {
+            color: #a0a0b5;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* البطاقات التفاعلية (Flip Cards) */
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 120px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .flip-front {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 26, 60, 0.2);
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .flip-back {
+            background: linear-gradient(135deg, #1f0008, #33000d);
+            border: 1px solid var(--primary-red);
+            color: #ffe6eb;
+            transform: rotateY(180deg);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* مشغل الموسيقى الأسفل */
+        .audio-player-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 450px;
+            background: rgba(10, 10, 15, 0.95);
+            border: 1px solid rgba(255, 26, 60, 0.4);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+        }
+
+        .song-details {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .disc-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(45deg, #1a1a1a, #333);
+            border: 2px solid var(--primary-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            animation: spin 4s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .disc-icon.playing {
+            animation-play-state: running;
+        }
+
+        .song-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .song-sub {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .btn-play {
+            background: var(--primary-red);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* Keyframe Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes crownGlow {
+            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.4)); }
+            100% { transform: scale(1.08); filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8)); }
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .timer-value { font-size: 20px; }
+            .timer-label { font-size: 10px; }
+            .header-badge h1 { font-size: 30px; }
+            .interactive-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- جزيئات الخلفية المتحركة -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- 1. شاشة إدخال الباسورد -->
+    <div id="login-screen">
+        <div class="lock-badge">
+            <svg viewBox="0 0 24 24">
+                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+            </svg>
+        </div>
+        <h2>أدخل كلمة المرور</h2>
+        
+        <div class="input-group">
+            <input type="password" id="passcode" placeholder="• • • •" maxlength="6">
+        </div>
+        <button class="btn-submit" onclick="unlock()">فتح الذكرى ✨</button>
+        <div id="error" class="error-msg">كلمة السر غير صحيحة! حاول مجدداً</div>
+    </div>
+
+    <!-- 2. محتوى الصفحة الرئيسية -->
+    <div id="main-app">
+        
+        <!-- الهيدر والتاج -->
+        <div class="header-badge">
+            <span class="crown-icon">👑</span>
+            <h1>مرور <span>6 شهور</span> سوا</h1>
+            <div class="header-date">16 / 4 — الذكرى النصف سنوية</div>
+        </div>
+
+        <!-- العداد الحقيقي بالثواني -->
+        <div class="live-counter-card">
+            <h3>رحلتنا المستمرة حتى هذه اللحظة ❤️</h3>
+            <div class="timer-grid">
+                <div class="timer-box">
+                    <span class="timer-value" id="days">182</span>
+                    <span class="timer-label">يوم</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-value" id="hours">00</span>
+                    <span class="timer-label">ساعة</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-value" id="minutes">00</span>
+                    <span class="timer-label">دقيقة</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-value" id="seconds">00</span>
+                    <span class="timer-label">ثانية</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- رسالة الاحتفال الرئيسية -->
+        <div class="message-box">
+            <p>
+                اليوم بنحتفل بمرور ستة أشهر من أجمّل أيام العمر.. ستة أشهر كانوا مليانين بالأمان والدعم والتفاصيل الصغيرة اللي بتفرق. وجودك في حياتي بيخلي كل حاجة ألطف وأجمل، وبتمنى نفضل دايماً سند لبعض وكل يوم حبنا بيزيد ويقوى عن اليوم اللي قبله. ❤️
+            </p>
+        </div>
+
+        <!-- شريط ذكريات الشهور (Timeline) -->
+        <div class="timeline-section">
+            <div class="timeline-title">محطات رحلتنا 📜</div>
+            
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>الشهر الأول - البداية ✨</h4>
+                    <p>أول خطوة وأجمل شرارة حب بدأت بيننا.. الأيام الأولى اللي عرفت فيها إني لقيت الشخص المناسب.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>الشهر الثالث - تعمّق المشاعر 🤝</h4>
+                    <p>المواقف والتفاصيل أثبتت إننا مش بس شخصين بيحبوا بعض، إحنا سند وأمان لبعض في كل الأوقات.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>الشهر السادس - اليوم المميز 🎉</h4>
+                    <p>6 شهور كاملة من الحب والتفاهم.. بداية جديدة لمستقبل أجمّل وأعظم مع بعض.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- كروت مفاجآت تفاعلية (Flip Cards) -->
+        <div class="interactive-grid">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-front">رسالة خاصة ✉️</div>
+                    <div class="flip-back">انت مش بس اختياري، انت أفضل وأجمل قرار أخذته في حياتي!</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-front">وعد للستة شهور الجاية 💍</div>
+                    <div class="flip-back">أوعدك نفضل سوا ونبني ذكريات أحلى وأحلى في الأيام الجاية.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- مشغل الصوت المثبت أسفل الشاشة -->
+    <div class="audio-player-bar" id="audioBar" style="display: none;">
+        <div class="song-details">
+            <div class="disc-icon" id="disc">🎵</div>
+            <div>
+                <div class="song-title">معايا - بهاء سلطان</div>
+                <div class="song-sub">أغنيتنا المفضلة ❤️</div>
+            </div>
+        </div>
+        <button class="btn-play" id="playBtn" onclick="toggleAudio()">⏸</button>
+    </div>
+
+    <!-- ملف الصوت للأغنية -->
+    <audio id="loveSong" src="c:\Users\New World\Music\Albumaty.Com_bhaa_sltan_maaya.mp3" loop></audio>
+
+    <script>
+        const song = document.getElementById('loveSong');
+        const playBtn = document.getElementById('playBtn');
+        const disc = document.getElementById('disc');
+
+        // التحقق من الباسورد (164 أو 16 4)
+        function unlock() {
+            const input = document.getElementById('passcode').value.trim();
+            const error = document.getElementById('error');
+
+            if (input === '164' || input === '16 4') {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-app').style.display = 'block';
+                document.getElementById('audioBar').style.display = 'flex';
+                
+                // تشغيل الأغنية ومؤثر القرص الدوار
+                song.play().then(() => {
+                    disc.classList.add('playing');
+                }).catch(() => {
+                    playBtn.innerText = '▶';
+                });
+
+                // بدء حساب العداد الحي
+                startLiveCounter();
+            } else {
+                error.style.display = 'block';
+            }
+        }
+
+        // تشغيل/إيقاف الصوت
+        function toggleAudio() {
+            if (song.paused) {
+                song.play();
+                playBtn.innerText = '⏸';
+                disc.classList.add('playing');
+            } else {
+                song.pause();
+                playBtn.innerText = '▶';
+                disc.classList.remove('playing');
+            }
+        }
+
+        // العداد الحي للوقت (Days, Hours, Minutes, Seconds)
+        function startLiveCounter() {
+            // تاريخ الافتراض (6 شهور قبل اليوم)
+            const startDate = new Date();
+            startDate.setMonth(startDate.getMonth() - 6);
+
+            setInterval(() => {
+                const now = new Date();
+                const diff = now - startDate;
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            }, 1000);
+        }
+
+        // إدخال بالضغط على Enter
+        document.getElementById('passcode').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') unlock();
+        });
+
+        /* --- تأثير خلفية الجزيئات النجمية الحمراء (Particle Canvas) --- */
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedY = Math.random() * -0.8 - 0.2;
+                this.opacity = Math.random() * 0.7 + 0.2;
+            }
+            update() {
+                this.y += this.speedY;
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 26, 60, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
+</body>
+</html>
